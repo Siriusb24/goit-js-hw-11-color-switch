@@ -7,38 +7,38 @@ const colors = [
     '#795548',
   ];
 
-const body = document.querySelector('body')
-const startBtn = document.querySelector('[data-action="start"]')
-const stopBtn = document.querySelector('[data-action="stop"]')
+const bodyOfSite = document.querySelector('body');
+const startButton = document.querySelector('[data-action="start"]');
+const stopButton = document.querySelector('[data-action="stop"]');
 
-startBtn.addEventListener('click', start)
-stopBtn.addEventListener('click', stop)
+startButton.addEventListener('click', start);
+stopButton.addEventListener('click', stop);
 
-function rundomColorBody(color){
-    body.style.backgroundColor = color;
+function changeColor(color){
+    bodyOfSite.style.backgroundColor = color;
 }
 
-let randomInterval = undefined
+let randomInterval = undefined;
 
 function start(){
-    randomInterval = setInterval(randomNumber => {
+    randomInterval = setInterval(randomNumber =>{
         randomNumber = randomIntegerFromInterval(0, 6);
-        rundomColorBody(colors[randomNumber])
-    }, 1000)
-    stopBtn.removeAttribute('disabled')
-    startBtn.setAttribute('disabled', true)
+        changeColor(colors[randomNumber]);
+    }, 1000);
+    startButton.setAttribute('disabled', true);
+    stopButton.removeAttribute('disabled');
 }
 
 function stop(){
-    clearInterval(randomInterval)
-    startBtn.removeAttribute('disabled')
-    stopBtn.setAttribute('disabled', true)
-    body.style.backgroundColor = "#ffffff";
+    clearInterval(randomInterval);
+    startButton.removeAttribute('disabled');
+    stopButton.setAttribute('disabled', true);
+    changeColor('white')
 }
 
 const randomIntegerFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
-  };
+};
 
 
 
